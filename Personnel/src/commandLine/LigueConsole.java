@@ -132,7 +132,7 @@ public class LigueConsole
 	{
 		return new List<>("Modifier un employé", "e", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {employeConsole.editerEmploye(element);}
+				employeConsole.editerEmploye()
 				);
 	}
 	

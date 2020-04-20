@@ -2,7 +2,7 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
-
+import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
@@ -14,16 +14,21 @@ public class EmployeConsole
 		return new Option("Afficher l'employé", "l", () -> {System.out.println(employe);});
 	}
 
-	Menu editerEmploye(Employe employe)
+	ListOption<Employe> editerEmploye()
 	{
-		Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
-		menu.add(afficher(employe));
-		menu.add(changerNom(employe));
-		menu.add(changerPrenom(employe));
-		menu.add(changerMail(employe));
-		menu.add(changerPassword(employe));
-		menu.addBack("q");
-		return menu;
+		return (employe) -> editerEmploye(employe);		
+	}
+
+	Option editerEmploye(Employe employe)
+	{
+			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
+			menu.add(afficher(employe));
+			menu.add(changerNom(employe));
+			menu.add(changerPrenom(employe));
+			menu.add(changerMail(employe));
+			menu.add(changerPassword(employe));
+			menu.addBack("q");
+			return menu;
 	}
 
 	private Option changerNom(final Employe employe)
