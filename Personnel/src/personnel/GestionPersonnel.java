@@ -47,6 +47,7 @@ public class GestionPersonnel implements Serializable
 		if (gestionPersonnel != null)
 			throw new RuntimeException("Vous ne pouvez créer qu'une seuls instance de cet objet.");
 		ligues = new TreeSet<>();
+		gestionPersonnel = this;
 	}
 	
 	public void sauvegarder() throws SauvegardeImpossible
