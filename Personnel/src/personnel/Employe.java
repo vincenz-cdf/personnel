@@ -48,7 +48,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public boolean estRoot()
 	{
-		return GestionPersonnel.getGestionPersonnel().getRoot() == this;
+		return gestionPersonnel.getRoot() == this;
 	}
 	
 	/**
@@ -151,12 +151,12 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void remove()
 	{
-		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
+		Employe root = gestionPersonnel.getRoot();
 		if (this != root)
 		{
 			if (estAdmin(getLigue()))
 				getLigue().setAdministrateur(root);
-			ligue.remove(this);
+			getLigue().remove(this);
 		}
 		else
 			throw new ImpossibleDeSupprimerRoot();
