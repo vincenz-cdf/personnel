@@ -114,4 +114,14 @@ class testEmploye
 		LocalDate date = LocalDate.of(2021, 12, 13);
 		assertEquals(date, employe.getDateA());
 	}
+	
+	@Test
+	void setDateD() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
+		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
+		employe.setDateD(2022,12,13);
+		LocalDate date = LocalDate.of(2022, 12, 13);
+		assertEquals(date, employe.getDateD());
+	}
 }
