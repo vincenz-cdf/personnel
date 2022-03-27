@@ -1,3 +1,4 @@
+
 package jdbc;
 
 import java.sql.DriverManager;
@@ -24,7 +25,7 @@ public class JDBC implements Passerelle
 		}
 		catch (ClassNotFoundException e)
 		{
-			System.out.println("Pilote JDBC non installÃ©.");
+			System.out.println("Pilote JDBC non installé.");
 		}
 		catch (SQLException e)
 		{
@@ -96,7 +97,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("UPDATE ligue SET nom_ligue = ? WHERE num_ligue = ?");
+			instruction = connection.prepareStatement("UPDATE ligue SET nom_ligue = ? WHERE id_ligue = ?");
 			instruction.setString(1, ligue.getNom());
 			instruction.setInt(2, ligue.getId());
 			instruction.executeUpdate();
@@ -135,7 +136,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement listLigue;
-			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE num_ligue = ?");
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE id_ligue = ?");
 			listLigue.setInt(1, ligue.getId());
 			listLigue.executeUpdate();
 			System.out.println("Ligue " + ligue.getNom() + " supprim�");
@@ -155,7 +156,7 @@ public class JDBC implements Passerelle
 		try {
 			
 			PreparedStatement instruction2;
-			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail_employe, password_employe, date_arrivee, num_ligue) values(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction2 = connection.prepareStatement("insert into employe (nom_employe, prenom_employe, mail_employe, password_employe, date_arrivee, id_ligue) values(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction2.setString(1, employe.getNom());		
 			instruction2.setString(2, employe.getPrenom());	
 			instruction2.setString(3, employe.getMail());
@@ -230,7 +231,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement listEmploye;
-			listEmploye = connection.prepareStatement("UPDATE employe SET admin = ? WHERE num_ligue = ? AND id_employe = ?");
+			listEmploye = connection.prepareStatement("UPDATE employe SET admin = ? WHERE id_ligue = ? AND id_employe = ?");
 			listEmploye.setInt(1, 1);
 			listEmploye.setInt(2, employe.getLigue().getId());
 			listEmploye.setInt(3, employe.getId());
@@ -284,7 +285,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement tableEmploye;
-			tableEmploye = connection.prepareStatement("UPDATE employe SET admin = 0 WHERE num_ligue = ?");
+			tableEmploye = connection.prepareStatement("UPDATE employe SET admin = 0 WHERE id_ligue = ?");
 			tableEmploye.setInt(1, ligue.getId());
 			tableEmploye.executeUpdate();
 		}
@@ -299,7 +300,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement tableEmploye;
-			tableEmploye = connection.prepareStatement("UPDATE employe SET admin = (CASE WHEN id_employe = ? THEN 1 WHEN id_employe <> ? THEN 0 END) WHERE num_ligue = ?");
+			tableEmploye = connection.prepareStatement("UPDATE employe SET admin = (CASE WHEN id_employe = ? THEN 1 WHEN id_employe <> ? THEN 0 END) WHERE id_ligue = ?");
 			tableEmploye.setInt(1, employe.getId());
 			tableEmploye.setInt(2, employe.getId());
 			tableEmploye.setInt(3, employe.getLigue().getId());

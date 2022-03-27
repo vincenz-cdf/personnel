@@ -2,11 +2,11 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
-import java.time.LocalDate;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
+import java.time.LocalDate;
 import personnel.SauvegardeImpossible;
 
 public class EmployeConsole 
@@ -59,29 +59,27 @@ public class EmployeConsole
 	
 	private Option changerDateArrivee(final Employe employe, LocalDate dateArrivee) {
 
-		return new Option("Changer la date d'arrivée", "datea", ()->
+		return new Option("Changer la date d'arrivÃ©e", "datea", ()->
 		{
 			try {
-			    System.out.println("Date d'arrivée");
-				employe.setDateArrivee(LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")));
+			    System.out.println("Date d'arrivÃ©e");
+				employe.setDateArrivee(LocalDate.parse(getString("Date d'arrivÃ©e (YYYY-MM-DD) : ")));
 
 		    } 
 			catch (SauvegardeImpossible e) {
-				System.out.println("Date d'arrivée incorrecte. ");
+				System.out.println("Date d'arrivÃ©e incorrecte. ");
 		}});
 	}
 
 
 	private Option changerDateDepart(final Employe employe, LocalDate dateDepart) {
-		return new Option("Changer la date de départ", "dated", ()->
+		return new Option("Changer la date de dÃ©part", "dated", ()->
 		{
 			try {
-			  employe.setDateDepart(LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")));
+			  employe.setDateDepart(LocalDate.parse(getString("Date d'arrivÃ©e (YYYY-MM-DD) : ")));
 		 } 
 			catch (SauvegardeImpossible e) {
 			e.printStackTrace();
 		}});
 	}
-	
-
 }

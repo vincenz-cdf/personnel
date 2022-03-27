@@ -20,8 +20,8 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateArrivee, dateDepart;
 	private Employe administrateur;
 	private Ligue ligue;
-	private SortedSet<Employe> employes;
 	private GestionPersonnel gestionPersonnel;
+	private SortedSet<Employe> employes;
 	private int id;
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart)
@@ -35,7 +35,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.dateArrivee = dateArrivee;
 		this.dateDepart = dateDepart;
 	}
-	
+
 	public Employe(GestionPersonnel gestionPersonnel, int id, String nom) {
 		this.nom = nom;
 		employes = new TreeSet<>();
@@ -78,15 +78,6 @@ public class Employe implements Serializable, Comparable<Employe>
 		return nom;
 	}
 
-	/**
-	 * Retourne le mdp de l'employ�
-	 * @return le mdp de l'employ�
-	 */
-	public String getPassword()
-	{
-		return password;
-	}
-	
 	/**
 	 * Change le nom de l'employé.
 	 * @param nom le nouveau nom.
@@ -150,6 +141,12 @@ public class Employe implements Serializable, Comparable<Employe>
 		return this.password.equals(password);
 	}
 
+	
+	public String getPassword()
+	{
+		return password;
+	}
+	
 	/**
 	 * Change le password de l'employé.
 	 * @param password le nouveau password de l'employé. 

@@ -2,12 +2,9 @@ package commandLine;
 
 import personnel.*;
 import commandLineMenus.*;
-import jdbc.Credentials;
 import jdbc.JDBC;
-import java.sql.*;
-import static commandLineMenus.rendering.examples.util.InOut.*;
-import com.mysql.cj.xdevapi.*;
 
+import static commandLineMenus.rendering.examples.util.InOut.*;
 
 public class PersonnelConsole
 {

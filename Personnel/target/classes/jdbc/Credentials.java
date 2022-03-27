@@ -10,7 +10,6 @@ public class Credentials
 	private static String user = "root";
 	private static String password = "";
 	
-	
 	static String getUrl() 
 	{
 		return "jdbc:" + driver + "://" + host + ":" + port + "/" + database + "?serverTimezone=UTC" ;

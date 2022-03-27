@@ -1,17 +1,13 @@
 package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
 
 import personnel.*;
 
 class testLigue 
 {
-GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
-
+	GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	
 	@Test
 	void createLigue() throws SauvegardeImpossible
@@ -23,8 +19,8 @@ GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	@Test
 	void addEmploye() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty", null, null); 
+		Ligue ligue = gestionPersonnel.addLigue("FlÃ©chettes");
+		Employe employe = ligue.addEmploye("Bouchard", "GÃ©rard", "g.bouchard@gmail.com", "azerty", null, null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
@@ -39,7 +35,7 @@ GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	@Test
 	void setAdmin() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
+		Ligue ligue = gestionPersonnel.addLigue("FlÃ©chettes");
 		Employe employe = ligue.addEmploye("John", "Doe", "jhondoe@mail.com", "admin", null, null);
 		ligue.setAdministrateur(employe);
 		assertEquals(employe, ligue.getAdministrateur());

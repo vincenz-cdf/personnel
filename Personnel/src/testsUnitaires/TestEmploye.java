@@ -15,8 +15,8 @@ class testEmploye
 	@Test
 	void addEmploye() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("FlÈchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
@@ -24,14 +24,14 @@ class testEmploye
 	void estAdminFalse() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		assertFalse(employe.estAdmin(ligue) );
 	}
 	@Test
 	void estRootFalse() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		assertFalse(employe.estRoot());
 	}
 	
@@ -46,7 +46,7 @@ class testEmploye
 	void setNom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		employe.setNom("jambon");
 		assertEquals("jambon", employe.getNom());
 	}
@@ -55,7 +55,7 @@ class testEmploye
 	void setPrenom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		employe.setPrenom("Depardieu");
 		assertEquals("Depardieu", employe.getPrenom());
 	}
@@ -64,7 +64,7 @@ class testEmploye
 	void setMail() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		employe.setMail("G.Bouchard@outlook.fr");
 		assertEquals("G.Bouchard@outlook.fr", employe.getMail());
 	}
@@ -73,7 +73,7 @@ class testEmploye
 	void setPassword() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		employe.setPassword("password");
 		assertTrue(employe.checkPassword("password"));
 	}
@@ -82,7 +82,7 @@ class testEmploye
 	void remove() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		employe.remove();
 		assertFalse(ligue.getEmployes().contains(employe));
 	}
@@ -91,7 +91,7 @@ class testEmploye
 	void removeAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fl√©chettes");
-		Employe employe = ligue.addEmploye("Bouchard", "GÈrard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "G√©rard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2016-09-05"), null); 
 		ligue.setAdministrateur(employe);
 		employe.remove();
 		assertFalse(ligue.getEmployes().contains(employe));
