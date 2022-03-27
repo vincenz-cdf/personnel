@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.time.LocalDate;
 
 /**
  * Représente une ligue. Chaque ligue est reliée à une liste
@@ -60,6 +61,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public void setNom(String nom)
 	{
 		this.nom = nom;
+		this.update();
 	}
 
 	/**
@@ -108,9 +110,23 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @return l'employé créé. 
 	 */
 
-	public Employe addEmploye(String nom, String prenom, String mail, String password)
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart)
 	{
-		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password);
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart);
+		employes.add(employe);
+
+		try {
+			employe.setId(gestionPersonnel.insert(employe));
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
+		return employe;
+	}
+
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart, int id)
+	{
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrivee);
+		employe.setId(id);
 		employes.add(employe);
 		return employe;
 	}
@@ -125,7 +141,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * de la ligue.
 	 */
 	
-	public void remove()
+	public void remove() throws SauvegardeImpossible
 	{
 		gestionPersonnel.remove(this);
 	}
@@ -142,4 +158,25 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return nom;
 	}
+	
+	public void update()
+	{
+		try {
+			gestionPersonnel.update(this);
+		} catch (SauvegardeImpossible e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setAdmin(Employe employe) 
+	{
+		gestionPersonnel.setAdmin(employe);
+	}
+	
 }

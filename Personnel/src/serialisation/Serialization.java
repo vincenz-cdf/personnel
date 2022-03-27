@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import personnel.Employe;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
 import personnel.SauvegardeImpossible;
+
 
 public class Serialization implements personnel.Passerelle
 {
@@ -29,7 +31,7 @@ public class Serialization implements personnel.Passerelle
 	
 	/**
 	 * Sauvegarde le gestionnaire pour qu'il soit ouvert automatiquement 
-	 * lors d'une exÃ©cution ultÃ©rieure du programme.
+	 * lors d'une exécution ultérieure du programme.
 	 * @throws SauvegardeImpossible Si le support de sauvegarde est inaccessible.
 	 */
 	@Override
@@ -50,4 +52,66 @@ public class Serialization implements personnel.Passerelle
 	{
 		return -1;
 	}
+
+	@Override
+	public int insert(Employe employe) throws SauvegardeImpossible {
+		return -1;
+	}
+
+	@Override
+	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void deleteEmploye(Employe employe) throws SauvegardeImpossible {
+		
+	}
+
+
+	@Override
+	public void updateLigue(Ligue ligue) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void SetAdmin(Employe employe) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void updateEmploye(Employe employe, String string) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public Employe getSuperAdmin(Employe root) {
+		return root;
+	}
+
+	@Override
+	public void updateEmp(Employe employe) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void setAdmin(Employe employe) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void updateRoot(Employe employe) throws SauvegardeImpossible {
+		
+	}
+
+	@Override
+	public void setRoot(Employe employe) {
+
+	}
+
+	@Override
+	public void removeAdmin(Ligue ligue) throws SauvegardeImpossible {
+		
+	}
+	
 }

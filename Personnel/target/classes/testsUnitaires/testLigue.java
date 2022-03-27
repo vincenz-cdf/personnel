@@ -1,6 +1,9 @@
 package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import personnel.*;
@@ -20,8 +23,8 @@ GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	@Test
 	void addEmploye() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty"); 
+		Ligue ligue = gestionPersonnel.addLigue("Fl�chettes");
+		Employe employe = ligue.addEmploye("Bouchard", "G�rard", "g.bouchard@gmail.com", "azerty", null, null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
@@ -36,8 +39,8 @@ GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	@Test
 	void setAdmin() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty"); 
+		Ligue ligue = gestionPersonnel.addLigue("Fl�chettes");
+		Employe employe = ligue.addEmploye("John", "Doe", "jhondoe@mail.com", "admin", null, null);
 		ligue.setAdministrateur(employe);
 		assertEquals(employe, ligue.getAdministrateur());
 	}
@@ -45,7 +48,7 @@ GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	void removeEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty"); 
+		Employe employe = ligue.addEmploye("John", "Doe", "jhondoe@mail.com", "admin", null, null);
 		employe.remove();
 		assertFalse(ligue.getEmployes().contains(employe));
 	}
@@ -54,7 +57,7 @@ GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
 		Ligue ligue2 = gestionPersonnel.addLigue("billard");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
+		Employe employe = ligue.addEmploye("John", "Doe", "jhondoe@mail.com", "admin", null, null);
 		assertThrows(DroitsInsuffisants.class, () -> ligue2.setAdministrateur(employe));
 	}
 	

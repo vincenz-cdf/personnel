@@ -2,6 +2,8 @@ package personnel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -15,20 +17,31 @@ public class Employe implements Serializable, Comparable<Employe>
 {
 	private static final long serialVersionUID = 4795721718037994734L;
 	private String nom, prenom, password, mail;
+	private LocalDate dateArrivee, dateDepart;
+	private Employe administrateur;
 	private Ligue ligue;
+	private SortedSet<Employe> employes;
 	private GestionPersonnel gestionPersonnel;
-	private LocalDate dateA, dateD;
+	private int id;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart)
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
 		this.mail = mail;
-		dateA = LocalDate.now();
-		dateD = null;
 		this.ligue = ligue;
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+	}
+	
+	public Employe(GestionPersonnel gestionPersonnel, int id, String nom) {
+		this.nom = nom;
+		employes = new TreeSet<>();
+		this.gestionPersonnel = gestionPersonnel;
+		administrateur = gestionPersonnel.getRoot();
+		this.id = id;
 	}
 	
 	/**
@@ -65,6 +78,15 @@ public class Employe implements Serializable, Comparable<Employe>
 		return nom;
 	}
 
+	/**
+	 * Retourne le mdp de l'employ�
+	 * @return le mdp de l'employ�
+	 */
+	public String getPassword()
+	{
+		return password;
+	}
+	
 	/**
 	 * Change le nom de l'employé.
 	 * @param nom le nouveau nom.
@@ -186,35 +208,54 @@ public class Employe implements Serializable, Comparable<Employe>
 		return res + ")";
 	}
 	
-	public LocalDate getDateA()
+	public LocalDate getDateArrivee()
 	{
-		return dateA;
-	}
-	public LocalDate getDateD()
-	{
-		return dateD;
-	}
-
-	public void setDateA(int an, int mois, int jour) throws SauvegardeImpossible 
-	{
-		LocalDate date = LocalDate.of(an, mois, jour);
-		if(dateD != null)
-		{
-			if(date.isAfter(dateD))
-				throw new SauvegardeImpossible(null);
-			else
-				this.dateA = date;
-		}
-		else
-			this.dateA = date;
+		 return dateArrivee;
 	}
 	
-	public void setDateD(int an, int mois, int jour) throws SauvegardeImpossible
+	public LocalDate getDateDepart()
 	{
-		LocalDate date = LocalDate.of(an, mois, jour);
-		if(date.isBefore(dateA))
-			throw new SauvegardeImpossible(null);
-		else
-			this.dateD = date;
+		return dateDepart;
+	}
+
+	public void setDateArrivee(LocalDate dateArrivee) throws SauvegardeImpossible 
+	{
+		this.dateArrivee = dateArrivee;
+		try {
+			this.update("date_arrivee");
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setDateDepart(LocalDate dateDepart) throws SauvegardeImpossible 
+	{
+		this.dateDepart = dateDepart;
+		try {
+			this.update("date_depart");
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void update(String string) throws SauvegardeImpossible {
+		 gestionPersonnel.update(this, string);
+	}
+
+	public void updateEmploye()
+	{
+		try {
+			gestionPersonnel.updateEmploye(this);
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
 	}
 }
