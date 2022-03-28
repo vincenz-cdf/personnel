@@ -87,6 +87,15 @@ public class LigueConsole
 		menu.addBack("q");
 		return menu;
 	}
+	
+	private Menu editerEmploye(Ligue ligue)
+	{
+		Menu menu = new Menu("Editer " + ligue.getNom());
+		menu.add(modifierEmploye(ligue));
+		menu.add(supprimerEmploye(ligue));
+		menu.addBack("q");
+		return menu;
+	}
 
 	private Option changerNom(final Ligue ligue)
 	{
@@ -100,6 +109,11 @@ public class LigueConsole
 				() -> new ArrayList<>(gestionPersonnel.getLigues()),
 				(element) -> editerLigue(element)
 				);
+	}
+	
+	private List<Employe> selectionnerEmploye()
+	{
+		return null;
 	}
 	
 	private Option ajouterEmploye(final Ligue ligue) throws SauvegardeImpossible
@@ -128,8 +142,6 @@ public class LigueConsole
 			System.err.println("Impossible de sauvegarder cet employe");
 			e.printStackTrace();
 		}
-		menu.add(modifierEmploye(ligue));
-		menu.add(supprimerEmploye(ligue));
 		menu.addBack("q");
 		return menu;
 	}
