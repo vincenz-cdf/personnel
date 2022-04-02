@@ -113,7 +113,10 @@ public class LigueConsole
 	
 	private List<Employe> selectionnerEmploye()
 	{
-		return null;
+		return new List<Employe>("Sélectionner un employé", "e", 
+				() -> new ArrayList<>(gestionPersonnel.getEmployes()),
+				(element) -> editerEmploye(element)
+				);
 	}
 	
 	private Option ajouterEmploye(final Ligue ligue) throws SauvegardeImpossible
@@ -139,9 +142,10 @@ public class LigueConsole
 		try {
 			menu.add(ajouterEmploye(ligue));
 		} catch (SauvegardeImpossible e) {
-			System.err.println("Impossible de sauvegarder cet employe");
+			System.err.println("Impossiblede sauvegarder cet employe");
 			e.printStackTrace();
 		}
+		menu.add(selectionnerEmploye());
 		menu.addBack("q");
 		return menu;
 	}

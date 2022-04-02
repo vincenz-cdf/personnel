@@ -97,7 +97,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("UPDATE ligue SET nom_ligue = ? WHERE id_ligue = ?");
+			instruction = connection.prepareStatement("UPDATE ligue SET nom = ? WHERE id = ?");
 			instruction.setString(1, ligue.getNom());
 			instruction.setInt(2, ligue.getId());
 			instruction.executeUpdate();
@@ -136,7 +136,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement listLigue;
-			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE id_ligue = ?");
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE id = ?");
 			listLigue.setInt(1, ligue.getId());
 			listLigue.executeUpdate();
 			System.out.println("Ligue " + ligue.getNom() + " supprim�");
