@@ -128,7 +128,7 @@ public class LigueConsole
 							getString("prenom : "), 
 							getString("mail : "), 
 						    getString("password : "), 
-						    LocalDate.parse(getString("Date d'arriv�e (YYYY-MM-DD) : ")), 
+						    LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
 						    null
 						    );
 				}
