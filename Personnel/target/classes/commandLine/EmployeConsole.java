@@ -15,8 +15,8 @@ public class EmployeConsole
 	{
 		return new Option("Afficher l'employé", "l", () -> {System.out.println(employe);});
 	}
-
-	Option editerEmploye(Employe employe)
+	
+	Option editerEmploye(final Employe employe)
 	{
 			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
 			menu.add(afficher(employe));

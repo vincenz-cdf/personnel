@@ -110,10 +110,10 @@ public class LigueConsole
 				);
 	}
 	
-	private List<Employe> selectionnerEmploye()
+	private List<Employe> selectionnerEmploye(Ligue ligue)
 	{
 		return new List<Employe>("SÃ©lectionner un employÃ©", "e", 
-				() -> new ArrayList<>(gestionPersonnel.getEmployes()),
+				() -> new ArrayList<>(ligue.getEmployes()),
 				(element) -> editerEmploye(element)
 				);
 	}
@@ -127,7 +127,7 @@ public class LigueConsole
 							getString("prenom : "), 
 							getString("mail : "), 
 						    getString("password : "), 
-						    LocalDate.parse(getString("Date d'arrivï¿½e (YYYY-MM-DD) : ")), 
+						    LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
 						    null
 						    );
 				}
@@ -144,7 +144,7 @@ public class LigueConsole
 			System.err.println("Impossiblede sauvegarder cet employe");
 			e.printStackTrace();
 		}
-		menu.add(selectionnerEmploye());
+		menu.add(selectionnerEmploye(ligue));
 		menu.addBack("q");
 		return menu;
 	}
@@ -168,9 +168,9 @@ public class LigueConsole
 		  return EmployeList;
 	}		
 
-	private Option modifierEmploye(final Employe employe)
+	private Option modifierEmploye(Employe employe)
 	{
-		return new Option("Modifier l'employÃ©", "e", () -> {
+		return new Option("Modifier " + employe.getNom(), "e", () -> {
 			employeConsole.editerEmploye(employe);
 		});
 	}
