@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
+import commandLineMenus.examples.employees.core.Department;
+import commandLineMenus.examples.employees.core.Employee;
+
 import java.time.LocalDate;
 
 import personnel.*;
@@ -91,7 +94,8 @@ public class LigueConsole
 	private Menu editerEmploye(Employe employe)
 	{
 		Menu menu = new Menu("Editer " + employe.getNom());
-		menu.add(modifierEmploye(employe));
+		menu.add(employeConsole.editerEmploye(employe));
+		menu.add(supprimerEmploye(employe));
 		menu.addBack("q");
 		return menu;
 	}
@@ -112,9 +116,8 @@ public class LigueConsole
 	
 	private List<Employe> selectionnerEmploye(Ligue ligue)
 	{
-
 		return new List<Employe>("Sélectionner un employé", "e", 
-				() -> new ArrayList<>(gestionPersonnel.getEmployes()),
+				() -> new ArrayList<>(ligue.getEmployes()),
 				(element) -> editerEmploye(element)
 				);
 	}
@@ -150,12 +153,11 @@ public class LigueConsole
 		return menu;
 	}
 
-	private List<Employe> supprimerEmploye(final Ligue ligue)
+	private Option supprimerEmploye(final Employe employe)
 	{
-		return new List<>("Supprimer un employé", "s", 
-				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {element.remove();}
-				);
+		return new Option("Supprimer", "d", () -> {
+				employe.remove();
+		});
 	}
 	
 	private List<Employe> changerAdministrateur(final Ligue ligue, final Employe employe)
@@ -168,13 +170,6 @@ public class LigueConsole
 		  EmployeList.addBack("q");
 		  return EmployeList;
 	}		
-
-	private Option modifierEmploye(Employe employe)
-	{
-		return new Option("Modifier l'employé", "e", () -> {
-			employeConsole.editerEmploye(employe);
-		});
-	}
 	
 	private Option supprimer(Ligue ligue)
 	{
