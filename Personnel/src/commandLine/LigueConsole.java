@@ -52,16 +52,7 @@ public class LigueConsole
 	}
 	private Option afficherEmployes(final Ligue ligue)
 	{
-		return new Option("Afficher les employes", "l", () -> {
-
-			for (Employe employes: ligue.getEmployes())
-			System.out.println(employes);
-
-			if(ligue.getEmployes().size() == 0)
-			{
-				System.out.println("Pas d'employé, veuillez en ajouter");
-			}
-		});
+		return new Option("Afficher les employes", "l", () -> {System.out.println(ligue.getEmployes());});
 	}
 
 	private Option ajouterLigue()
@@ -131,10 +122,10 @@ public class LigueConsole
 							getString("prenom : "), 
 							getString("mail : "), 
 						    getString("password : "), 
-						    LocalDate.parse(getString("Date d'arrivée (YYYY-MM-DD) : ")), 
+						    LocalDate.now(), 
 						    null
 						    );
-				}
+			}
 		);
 	}
 	

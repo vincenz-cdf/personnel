@@ -52,6 +52,20 @@ public class JDBC implements Passerelle
 		return gestionPersonnel;
 	}
 
+	public boolean isExistLigue(String ligue) throws SauvegardeImpossible{
+		try {
+			PreparedStatement requete = connection.prepareStatement("SELECT * FROM ligue where nom = ?");
+			requete.setString(1, ligue);
+			ResultSet response = requete.executeQuery();
+			if(response.next()) 
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	@Override
 	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel) throws SauvegardeImpossible 
 	{
@@ -368,5 +382,35 @@ public class JDBC implements Passerelle
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
-	}	
+	}
+	
+	public boolean isExistEmployeNomLigue(int ligue ,String nom)throws SauvegardeImpossible {
+		try {
+			PreparedStatement requete2 = connection.prepareStatement("SELECT * FROM employe where id_ligue = ? AND nom = ? ");
+			requete2.setInt(1, ligue);
+			requete2.setString(2, nom);
+			ResultSet response2 = requete2.executeQuery();
+			if(response2.next()) 
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean isExistEmployePrenomLigue(int ligue ,String Prenom)throws SauvegardeImpossible {
+		try {
+			PreparedStatement requete2 = connection.prepareStatement("SELECT * FROM employe where id_ligue = ? AND prenom =?");
+			requete2.setInt(1,ligue);
+			requete2.setString(2, Prenom);
+			ResultSet response2 = requete2.executeQuery();
+			if(response2.next()) 
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

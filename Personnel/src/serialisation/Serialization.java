@@ -112,4 +112,9 @@ public class Serialization implements personnel.Passerelle
 	public void removeAdmin(Ligue ligue) throws SauvegardeImpossible {
 
 	}
+	
+	@Override
+	public boolean isExistLigue(String ligue) throws SauvegardeImpossible{
+		return true;
+	}
 }

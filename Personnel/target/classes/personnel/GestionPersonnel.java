@@ -209,4 +209,14 @@ public class GestionPersonnel implements Serializable
 	{
 		return root;
 	}
+	
+	public boolean isExistLigue(String ligue) {
+		try {
+			return passerelle.isExistLigue(ligue);
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
