@@ -54,15 +54,7 @@ public class EmployeConsole
 	
 	private Option changerPassword(final Employe employe)
 	{
-		return new Option("Changer le password", "x", () -> {
-			try {
-				employe.setPassword(getString("Nouveau password : "));
-			}
-			catch (RuntimeException e) {
-				System.out.println("Le mot de passe ne contient pas au moins 8 caractères ou de chiffres ");
-			}
-		});
-		
+		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
 	private Option changerDateArrivee(final Employe employe, LocalDate dateArrivee) {

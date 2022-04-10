@@ -29,7 +29,6 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
 		this.prenom = prenom;
-		validatePassword(password);
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
@@ -155,26 +154,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void setPassword(String password)
 	{
-		validatePassword(password);
-		this.password = password;
+		this.password= password;
 	}
 
-	private static void validatePassword(String password)
-	{
-		int aLettre = 0;
-		int aNombre = 0;
-		if(password.length() >= 8)
-			for(int i=0; i < password.length(); i++)
-			{
-				if(Character.isDigit(password.charAt(i)))
-					aNombre = 1;
-				
-				if(Character.isLetter(password.charAt(i)))
-					aLettre = 1;
-			}
-		if(aNombre != 1 || aLettre != 1)
-			throw new RuntimeException();
-	}
 	/**
 	 * Retourne la ligue à laquelle l'employé est affecté.
 	 * @return la ligue à laquelle l'employé est affecté.
